@@ -1,4 +1,6 @@
 Goal: Create next week’s 5 LinkedIn posts about AI agents (including hooks + images).
+
+
 Agent output:
 
 1. Pull 10 trending AI agent tweets from last 7 days → X/Twitter search
