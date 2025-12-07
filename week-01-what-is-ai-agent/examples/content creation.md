@@ -6,4 +6,5 @@ Agent output:
 3. Turn each into a full 120-word post → Just write
 4. Generate one simple image per post (minimalist style) → Midjourney / Flux
 5. Schedule them Mon–Fri at 9:00 am → Buffer / LinkedIn scheduler
+   
 Ready for autonomous execution? Yes
