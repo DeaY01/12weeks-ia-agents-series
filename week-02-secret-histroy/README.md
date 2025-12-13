@@ -19,6 +19,7 @@ Claude Shannon – “Programming a Computer for Playing Chess”
 
 ### Your New Agent This Week/Your First Agent Using Tools – History Researcher
 Zero-code version → copy prompt from Tool_Research_Agent_Prompt.txt into chatgpt
+
 Python version → 
 
 Just type:  
