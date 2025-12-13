@@ -17,10 +17,10 @@ Claude Shannon – “Programming a Computer for Playing Chess”
 2023 – Auto-GPT & BabyAGI → open-source explosion  
 2025 – You and I are here building them in Nigeria
 
-### Your New Agent This Week/Your First Agent Using Tools – History Researcher
+### Your First Agent Using Tools – History Researcher
 Zero-code version → copy prompt from Tool_Research_Agent_Prompt.txt into chatgpt
 
-Python version → 
+Python version → copy code from research-agent.py in repo
 
 Just type:  
 “Give me the full history of AI agents from 1950 to 2025 with exact papers and people”
