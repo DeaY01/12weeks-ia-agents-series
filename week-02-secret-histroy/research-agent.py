@@ -1,4 +1,4 @@
-# Week 2 Tool-Using Research Agent - Final Version (Dec 2025)
+# Week 2 Tool-Using Research Agent (Dec 2025)
 
 !pip install ddgs openai -q
 
@@ -69,3 +69,4 @@ while True:
     print("\nAgent answering...\n")
     print(research_agent(question))
     print("\n" + "="*80 + "\n")
+
