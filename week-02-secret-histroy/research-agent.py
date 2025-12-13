@@ -1,24 +1,28 @@
-# Week 2 Tool-Using Research Agent - Simple & Reliable (Dec 2025)
-# Uses OpenAI function calling + DuckDuckGo search
-# Works with or without OpenAI key
+# Week 2 Tool-Using Research Agent - Final Version (Dec 2025)
 
-!pip install duckduckgo-search openai -q
+!pip install ddgs openai -q
 
+from ddgs import DDGS
 import openai
-from duckduckgo_search import DDGS
 
-openai.api_key = ""  # ← put your OpenAI key here or leave empty (still works!)
+openai.api_key = ""  # ← put your OpenAI key here or leave empty
 
 def search_web(query):
-    """Search the web using DuckDuckGo"""
+    # Make query AI-specific for better results
+    ai_query = query + " AI agent OR Devin Cognition OR AI software engineer"
     try:
         with DDGS() as ddgs:
-            results = [r for r in ddgs.text(query, max_results=5)]
+            results = list(ddgs.text(ai_query, max_results=5))
         if results:
-            return "\n".join([f"{r['title']}: {r['body']} ({r['href']})" for r in results])
-        return "No results found."
+            formatted = []
+            for r in results:
+                formatted.append(f"• {r['title']}")
+                formatted.append(f"  {r['body']}")
+                formatted.append(f"  Source: {r['href']}")
+            return "\n".join(formatted)
+        return "No relevant web results found."
     except:
-        return "Search failed — using built-in knowledge."
+        return "Web search unavailable."
 
 def research_agent(question):
     if openai.api_key and openai.api_key.strip():
@@ -26,7 +30,7 @@ def research_agent(question):
             response = openai.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=[
-                    {"role": "system", "content": "You are a world-class AI agent historian. Use the search tool when needed. Answer with bullets, exact years, people, papers."},
+                    {"role": "system", "content": "You are a world-class historian of AI agents (1950–2025). Answer with exact years, people, papers, and impact. Use bullets."},
                     {"role": "user", "content": question}
                 ],
                 temperature=0.3
@@ -35,23 +39,23 @@ def research_agent(question):
         except:
             pass
 
-    # Free fallback — built-in knowledge + search
+    # Free fallback with smart search
     search_results = search_web(question)
-    return f"""AI Agent History Answer (free mode):
+    return f"""AI Agent History Answer
 
-Search results:
+Web search results:
 {search_results}
 
-Key highlights:
-• 1950 – Claude Shannon described the perceive-decide-act loop
-• 1956 – Logic Theorist (first thinking program)
-• 1966–1972 – Shakey the Robot (first mobile agent)
-• 1987 – Rodney Brooks (reactive agents)
+Key milestones:
+• 1950 – Claude Shannon – “Programming a Computer for Playing Chess”
+• 1956 – Newell & Simon – Logic Theorist
+• 1966–1972 – Shakey the Robot
+• 1987 – Rodney Brooks – reactive agents
 • 1997 – Deep Blue beats Kasparov
 • 2016–2017 – AlphaGo revolution
-• 2023 – Auto-GPT & BabyAGI go viral
-• 2024 – Devin writes code
-• 2025 – Nigerians are building agents daily
+• 2023 – Auto-GPT & BabyAGI
+• 2024 – Devin (Cognition) – first AI software engineer
+• 2025 – Nigerians building agents daily
 
 Ask me anything!"""
 
@@ -60,7 +64,7 @@ print("Week 2 Tool-Using Research Agent Ready!\n")
 while True:
     question = input("Your question about AI agent history (or 'exit'): ")
     if question.lower() in ["exit", "quit"]:
-        print("Thanks for exploring!")
+        print("\nThanks for exploring AI agent history!")
         break
     print("\nAgent answering...\n")
     print(research_agent(question))
